@@ -18,9 +18,9 @@
 		float: left;
 	}
 	#footer .footer_top {
-    padding: 35px 0 ;
+    padding: 20px;
+    padding-bottom : 30px;
     background-color: #35373e;
-    width: 100%;
 	}
 	#footer .footer_top li {
 		list-style: none;
@@ -28,7 +28,7 @@
 	#footer .inner {
     position: relative;
     max-width: 1200px;
-    margin: 0 auto;
+    margin-bottom: 20px;
 	}
 	#footer .foot_menu {
     float: left;
@@ -77,25 +77,10 @@
 						<a href="" target="_blank" title="새창">찾아오시는길</a>
 					</li>
 				</ul>
-				<div class="family_site">
-					<div class="con_site">
-						<a href="#none" class="tit_site">패밀리사이트</a>
-						<ul class="list_site">
-							<li><a href="" target="_blank" title="새창">한국체육산업개발㈜</a></li>
-						</ul>
-					</div>
-					<div class="con_site">
-						<a href="#none" class="tit_site">관련사이트</a>
-						<ul class="list_site">
-							<li><a href="" target="_blank" title="새창">국민체육진흥공단</a></li>
-						</ul>
-					</div>
-				</div>
 			</div>
 		</div>
 	</div>
 	<!-- //footer  -->
-	
 </div>
 <p><br/></p>
 </body>

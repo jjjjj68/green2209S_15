@@ -121,14 +121,15 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
     padding-top: 5%;
     font-size: 36px;
     font-weight: 700;
-    color: #fff;
+    color: #242526;
     line-height: 1;
 	}
 /* .info_area02 .con_txt {padding:2.5% 0 3%;font-size:22px; color:#fff;} */
 	.info_area02 .con_txt {
     padding: 2.5% 0 3%;
     font-size: 22px;
-    color: #fff;
+    color: #242526;
+    font-weight: 400;
 	}
 /* .info_area02 .btn_info {display:block; position:relative; width:226px; height:70px; padding:0 30px; font-size:18px; font-weight:700; color:#fff; line-height:66px; border:2px solid #fff;} */
 	.info_area02 .btn_info {
@@ -139,9 +140,9 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
     padding: 0 30px;
     font-size: 18px;
     font-weight: 700;
-    color: #fff;
+    color: #242526;
     line-height: 66px;
-    border: 2px solid #fff;
+    border: 2px solid #242526;
 	}
 	.page_top {
     display: block;
@@ -160,21 +161,22 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 	.tit_type01 strong {
 		content: ' \261E';
 	}
+	.info_area02 .info_con {
+		padding-top: 80px;
+		padding-left: 230px;
+	}
+	
 </style>
 
 <body>
+	<!-- container -->
 	<div id="container">
-		
-		
 		<!-- header -->
 		<jsp:include page="/WEB-INF/views/include/header.jsp" />
 		<!-- 슬라이드 쇼 -->
 		<jsp:include page="/WEB-INF/views/include/slide.jsp" />
 		<!-- 내비바 -->
 		<jsp:include page="/WEB-INF/views/include/nav.jsp" />
-		<!-- container -->
-	
-		
 		<!-- content -->
 		<div id="content">
 						<div class="info_area01">
@@ -193,7 +195,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 								</a>
 							</li>
 							<li>
-								<a href="./notice_view.do?type_gbn=01&notice_seq=426">
+								<a href="">
 									테니스장 무단 사용 금지 안내 
 								</a>
 							</li>
@@ -209,7 +211,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 			<!-- // -->
 
 			<!-- 예약 신청 안내 -->
-			<div class="section info_area02">
+			<div class="info_area02">
 				<div class="inner">
 					<div class="info_con">
 						<h2 class="tit_type01">예약신청 안내</h2>

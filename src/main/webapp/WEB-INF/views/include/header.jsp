@@ -14,7 +14,6 @@
       max-width: 1280px;
       margin: 0 auto;
    }
-   
    #header .logo_area { /* 로고그림,그린테니스장 묶음 */
     position: absolute;
     top: 48px;
@@ -36,28 +35,6 @@
       vertical-align: top;
       text-decoration: none;
    }
-   
-   #header .top_menu { /* 상단 로그인 회원가입 */
-      float:right;
-      color: #45464b;
-      height:69px;
-      padding-top:30px; /* 위어래 수정할것 */
-      list-style:none;
-      text-decoration: none;
-   }
-   
-   #header .gnb ul > li > a {
-    display: block;
-    position: relative;
-    height: 45px;
-    padding-top: 30px;
-    font-size: 13px;
-    font-weight: 700;
-    line-height: 1;
-    color: #222;
-    text-decoration: none;
-   }
-   
    #header .gnb ul {   /* 상단 빠르게가기 아이콘들 */
     display: block;
     float: right;
@@ -68,18 +45,25 @@
     margin-inline-end: 0px;
     padding-inline-start: 20px;
    }
-   
+   #header .gnb ul > li > a {
+    display: block;
+    position: relative;
+    height: 45px;
+    padding-top: 30px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1;
+    color: #222;
+   }
    #header .gnb ul > li { /* 아이콘들 사이간격 위치 */
     float: left;
-    padding: 0 19px;
+    padding: 0 15px;
    }
-   
    #header .gnb ul > li > a > img { /* 메인으로 아이콘 크기 위치 */
       width:30px; 
       height:30px;
       transform: translate(0 , -100%)
    }
-   
    #header .gnb ul > li > a > .homeSub {	/* 메인으로 글씨 위치 */
       position:absolute;
       bottom:0;
@@ -87,7 +71,7 @@
       white-space:nowrap;
       transform: translate(-50%, 0)
    }
-   #header .gnb ul > li > a > .sub {	/* 쇼핑  글씨 위치 */
+   #header .gnb ul > li > a > .sub {	/* 글씨 위치 */
       position:absolute;
       bottom:0;
       left:50%;
@@ -102,30 +86,19 @@
       <div class="top_area">
          <!-- 로고(그림,그린테니스장) -->
          <div class="logo_area">
-            <a href="http://localhost:9090/green2209S_15" class="logo_main m-0 p-0"><img src="images/headerLogo.PNG" style="width:100px; height:100px"></a>
+            <a href="http://localhost:9090/green2209S_15" class="logo_main m-0 p-0"><img src="${ctp}/images/headerLogo.PNG" style="width:100px; height:100px"></a>
             <a href="http://localhost:9090/green2209S_15"class="logo_sub m-0 p-0">그린테니스장</a>
          </div>
-         
-         <!-- 상단 로그인 회원가입 -->
-         <ul class="top_menu">
-         <!-- 
-            <li>
-             <a href="naver.com" style="color : #45464b; ">로그인</a>&nbsp;&nbsp;|&nbsp;
-             <a href="" title="새창" style="color : #45464b; font-family: Verdana,sans-serif;">회원가입</a>
-            </li>
-          -->
-         </ul>
          <div class="inner">
-            <nav class="gnb">
-             <ul >
-                <li class="pc"><a href="" class="home" style="color: #0089ff;" target="_blank"><img src="images/home1.png" ><span class="homeSub">메인으로</span></a></li>
-                <li><a href="./basket_list.do" class="cart"><img src="images/shopping.png" ><span class="sub">결제바구니</span></a></li>
-                <li><a href="./aplictn_list.do" class="mypage"><img src="images/history.png" ><span class="sub">신청내역</span></a></li>
-                <li><a href="./aplictn_list.do" class="join"><img src="images/join.png" ><span class="sub">회원가입</span></a></li>
-                <li><a href="./aplictn_list.do" class="login"><img src="images/login1.png" ><span class="sub">로 그 인</span></a></li>
-                <li><a href="#allMenu" class="mo_allmenu"><img src="images/hamburger.png" ><span class="sub">전체메뉴</span></a></li>
+            <div class="gnb">
+             <ul>
+                <li><a href="" class="home" style="color: #0089ff;" target="_blank"><img src="${ctp}/images/home1.png" ><span class="homeSub">메인으로</span></a></li>
+                <li><a href="" ><img src="${ctp}/images/shopping.png" ><span class="sub">결제바구니</span></a></li>
+                <li><a href="" ><img src="${ctp}/images/history.png" ><span class="sub">신청내역</span></a></li>
+                <li><a href="" ><img src="${ctp}/images/join.png" ><span class="sub">회원가입</span></a></li>
+                <li><a href="${ctp}/member/login"><img src="${ctp}/images/login1.png" ><span class="sub">로 그 인</span></a></li>
              </ul>
-            </nav>
+            </div>
          </div>
       </div>
    </div>

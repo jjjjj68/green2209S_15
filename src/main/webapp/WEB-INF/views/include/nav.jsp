@@ -14,16 +14,15 @@
 	#nav .nav_menu {display:table; text-align:center; margin:0 auto;}
 	#nav .nav_menu > li {display:table-cell; width:240px; text-align:center;}
 	#nav .nav_menu > li > a {position:relative; display:block; font-size:20px; color:#cce1ff; text-align:center; line-height:90px; text-decoration: none;}
-	
 </style>
 <body>
 	<div id="nav">
 		<div class="inner">
 			<ul class="nav_menu">
-				<li><a href="./resrvtn_aplictn.do">일일입장 예약신청</a></li>
-				<li><a href="./aplictn_guide.do">신청방법안내</a></li>
-				<li><a href="./usage_guide.do">시설이용안내</a></li>
-				<li><a href="./directns.do">오시는길</a></li>
+				<li><a href="">일일입장 예약신청</a></li>
+				<li><a href="">신청방법안내</a></li>
+				<li><a href="">시설이용안내</a></li>
+				<li><a href="">오시는길</a></li>
 			</ul>
 		</div>
 	</div>
