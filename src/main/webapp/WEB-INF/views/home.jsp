@@ -113,7 +113,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 		width:100%;
     height: 600px;
     margin-top : 450px;
-    background: url(resources/images/bottom1.jpg)  center top;
+    background: url(resources/images/bottom1.jpg) center top;
     background-size:cover;
 	}
 /* .info_area02 .tit_type01 {padding-top:5%; font-size:36px; font-weight:700; color:#fff; line-height:1;} */

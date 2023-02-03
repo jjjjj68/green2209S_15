@@ -92,7 +92,7 @@
          <div class="inner">
             <div class="gnb">
              <ul>
-                <li><a href="" class="home" style="color: #0089ff;" target="_blank"><img src="${ctp}/images/home1.png" ><span class="homeSub">메인으로</span></a></li>
+                <li><a href="http://localhost:9090/green2209S_15" class="home" style="color: #0089ff;" target="_blank"><img src="${ctp}/images/home1.png" ><span class="homeSub">메인으로</span></a></li>
                 <li><a href="" ><img src="${ctp}/images/shopping.png" ><span class="sub">결제바구니</span></a></li>
                 <li><a href="" ><img src="${ctp}/images/history.png" ><span class="sub">신청내역</span></a></li>
                 <li><a href="" ><img src="${ctp}/images/join.png" ><span class="sub">회원가입</span></a></li>
