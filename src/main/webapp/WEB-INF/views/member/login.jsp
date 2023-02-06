@@ -112,9 +112,30 @@
     color: #555555;
 	}
 </style>
+<script>
+	'use strict';
+	/* function loginProc() {
+		let mid = document.getElementById("mid").value;
+		let pwd = document.getElementById("pwd").value;
+		
+		if(mid.trim() == "") {
+			alert("아이디를 입력하여 주십시요.");
+			document.getElementBtId("mid").focus();
+		}
+		else if (pwd.trim() == "") {
+			alert("비밀번호를 입력하여 주십시요.");
+			document.getElementBtId("pwd").focus();
+		}
+		else {
+			myform.submit();
+		}
+	}
+	 */
+</script>
 <body>
 <p><br/></p>
 <div class="container">
+	<form name="myform" method="post">
 	<!-- header -->
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<p><br/></p>
@@ -137,22 +158,17 @@
 				<div class="id_login_cont">
 					<div class="login id_login">
 						<div class="cont login_form">
-							<form id="loginForm" name="loginForm" method="post" action="">
-								<input type="hidden" id="user_data" name="user_data" value="" />
-								<input type="hidden" id="gubun" name="gubun" value="auth" />
-								<input type="hidden" id="login_key" name="login_key" value="078F659A272CCE4F7A25DE4E445422FF" />
-							</form>
 							<div class="login_input pw_input">
 								<div class="form-row">
-									<input type="text" class="form-control" id="login_id" name="login_id" title="아이디 입력" />	
+									<input type="text" class="form-control" id="mid" name="mid" title="아이디 입력" />	
 								</div>
 								<p></p>
 								<div class="form-row">
-									<input type="password" class="form-control" id="login_pwd" name="login_pwd" title="비밀번호 입력" />
+									<input type="password" class="form-control" id="pwd" name="pwd" title="비밀번호 입력" />
 								</div>
 							</div>   
 							<!-- //login_input -->
-							<button type="submit" class="btn btn_login" onclick="loginProc()" >로그인</button> 
+							<button type="submit" class="btn btn_login" >로그인</button> 
 							<div class="etc_btn">
 								<a href="">아이디찾기</a>&nbsp;|&nbsp;
 								<a href="">비밀번호찾기</a>&nbsp;|&nbsp;
@@ -164,6 +180,7 @@
 			</div>
 		</div>
 	</div>
+	</form>
 </div>
 </body>
 </html>

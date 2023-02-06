@@ -18,6 +18,10 @@ public class MessageController {
 			model.addAttribute("msg", mid + "님 로그인 되었습니다.");
 			model.addAttribute("url", "member/main");
 		}
+		else if(msgFlag.equals("LoginNo")) {
+			model.addAttribute("msg", "아이디/비밀번호을 확인해주세요.");
+			model.addAttribute("url", "member/login");
+		}
 		return "include/message";
 	}
 }

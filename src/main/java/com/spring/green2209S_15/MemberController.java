@@ -27,38 +27,44 @@ public class MemberController {
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
 	public String loginGet(HttpServletRequest request) {
-		Cookie[] coo = request.getCookies();
-		for(int i=0; i<coo.length; i++) {
-			if(coo[i].getName().equals("cMid")) {
-				request.setAttribute("mid", coo[i].getValue());
+		Cookie[] cookies = request.getCookies();
+		for(int i=0; i<cookies.length; i++) {
+			if(cookies[i].getName().equals("cMid")) {
+				request.setAttribute("mid", cookies[i].getValue());
 				break;
 			}
 		}
 		return "member/login";
 	}
 	
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = "/login", method = RequestMethod.POST)  
 	public String loginPost(HttpServletRequest request, HttpServletResponse response, HttpSession session,
 			@RequestParam(name = "mid", defaultValue = "", required = false)String mid,
 			@RequestParam(name = "pwd", defaultValue = "", required = false)String pwd,
 			@RequestParam(name = "idCheck", defaultValue = "", required = false)String idCheck) {
 
-		MemberVO vo = memberService.getMemeberIdcheck(mid);
-		
-		if(vo != null && passwordEncoder.matches(pwd, vo.) && vo.getUserDel().equals("NO")) {
-			session.setAttribute("sMid", mid);
+		MemberVO vo = memberService.getMemberIdcheck(mid);
+		if (vo != null && passwordEncoder.matches(pwd, vo.getPwd()) && vo.getUserDel().equals("NO") ) {
+			String strLevel = "";
+			if(vo.getLevel() == 0) strLevel = "관리자";
+			else if(vo.getLevel() == 1) strLevel = "운영자";
+			else if(vo.getLevel() == 2) strLevel = "정회원";
+			
+			session.setAttribute("sLevel", vo.getLevel());
+			session.setAttribute("sStrLevel", strLevel);
+			session.setAttribute("sMid", vo.getMid());
 			
 		if(idCheck.equals("on")) {
-			Cookie coo = new Cookie("cMid", mid);
-			coo.setMaxAge(60*60*24*1);
-			response.addCookie(coo);
+			Cookie cookie = new Cookie("cMid", mid);
+			cookie.setMaxAge(60*60*24*7);
+			response.addCookie(cookie);
 		}
 		else {
-			Cookie[] coo = request.getCookies();
-			for(int i=0; i<coo.length; i++) {
-				if(coo[i].getName().equals("cMid")) {
-					coo[i].setMaxAge(0);
-					response.addCookie(coo[i]);
+			Cookie[] cookies = request.getCookies();
+			for(int i=0; i<cookies.length; i++) {
+				if(cookies[i].getName().equals("cMid")) {
+					cookies[i].setMaxAge(0);
+					response.addCookie(cookies[i]);
 					break;
 				}
 			}

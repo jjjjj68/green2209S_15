@@ -4,8 +4,9 @@ import org.apache.ibatis.annotations.Param;
 
 import com.spring.green2209S_15.vo.MemberVO;
 
-public class MemberDAO {
+public interface MemberDAO {
 
-	public MemberVO getMemeberIdcheck(@Param("mid") String mid);
+	public MemberVO getMemberIdcheck(@Param("mid") String mid);
+
 
 }

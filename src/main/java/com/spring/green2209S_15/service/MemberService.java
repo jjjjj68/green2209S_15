@@ -4,6 +4,7 @@ import com.spring.green2209S_15.vo.MemberVO;
 
 public interface MemberService {
 
-	public MemberVO getMemeberIdcheck(String mid);
+	public MemberVO getMemberIdcheck(String mid);
 
+	
 }

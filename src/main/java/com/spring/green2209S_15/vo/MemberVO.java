@@ -11,4 +11,5 @@ public class MemberVO {
 	private String tel;
 	private String email;
 	private String userDel;
+	private int level;
 }
