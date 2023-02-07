@@ -44,6 +44,9 @@ public class MemberController {
 			@RequestParam(name = "idCheck", defaultValue = "", required = false)String idCheck) {
 
 		MemberVO vo = memberService.getMemberIdcheck(mid);
+		String pwdBycrypt = passwordEncoder.encode(idCheck);
+		vo.setPwd(pwdBycrypt);
+		
 		if (vo != null && passwordEncoder.matches(pwd, vo.getPwd()) && vo.getUserDel().equals("NO") ) {
 			String strLevel = "";
 			if(vo.getLevel() == 0) strLevel = "관리자";
@@ -53,7 +56,7 @@ public class MemberController {
 			session.setAttribute("sLevel", vo.getLevel());
 			session.setAttribute("sStrLevel", strLevel);
 			session.setAttribute("sMid", vo.getMid());
-			
+		
 		if(idCheck.equals("on")) {
 			Cookie cookie = new Cookie("cMid", mid);
 			cookie.setMaxAge(60*60*24*7);
@@ -75,4 +78,11 @@ public class MemberController {
 		return "redirect:/msg/LoginNo";
 	}
 }
+	
+	@RequestMapping(value = "/join", method=RequestMethod.GET)
+	public String joinGet() {
+		
+		return "member/join";
+	}
+	
 }

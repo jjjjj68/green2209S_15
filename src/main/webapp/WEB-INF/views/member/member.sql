@@ -12,7 +12,7 @@ create table member (
   primary key(idx,mid)							/* 주키: idx(고유번호), mid(아이디) */
 );
 
-drop table member;
+/*drop table member;*/
 desc member;
 
 insert into member values (default, 'admin', '1234', '관리자','0', '000-0000-0000','dlwo6466@naver.com',default);
