@@ -18,6 +18,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberDAO.getMemberIdcheck(mid);
 	}
 
+	@Override
+	public int setJoinOk(MemberVO vo) {
+		return memberDAO.setJoinOk(vo);
+	}
+
 
 
 	

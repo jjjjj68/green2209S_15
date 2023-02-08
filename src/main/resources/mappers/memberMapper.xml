@@ -7,6 +7,10 @@
 	  </select>
 	  
 	  
+	  <insert id="setJoinOk">
+	  	insert into member values (default,#{vo.mid},#{vo.pwd},#{vo.name},default,#{vo.tel},#{vo.email},default);
+	  </insert>
+	  
 	  
 	  
 	  

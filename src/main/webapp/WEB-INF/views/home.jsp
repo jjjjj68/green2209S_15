@@ -194,6 +194,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 									테니스 대회 안내 (2023 데이비스컵) 
 								</a>
 							</li>
+							<br/>
 							<li>
 								<a href="">
 									테니스장 무단 사용 금지 안내 
@@ -204,7 +205,7 @@ article, aside, canvas, details, figcaption, figure, footer, header, hgroup, men
 					</div>
 					<div class="info_con03">
 						<h2 class="tit_type01">고객센터 안내</h2>
-						<p class="txt">그린테니스장 <strong>02-2180-3778</strong></p>
+						<p class="txt">그린테니스장 <strong>00-0000-0000</strong></p>
 					</div>
 				</div>
 			</div>

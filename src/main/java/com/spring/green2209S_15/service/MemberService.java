@@ -6,5 +6,7 @@ public interface MemberService {
 
 	public MemberVO getMemberIdcheck(String mid);
 
+	public int setJoinOk(MemberVO vo);
+
 	
 }
