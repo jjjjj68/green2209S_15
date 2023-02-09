@@ -17,6 +17,7 @@ desc member;
 
 insert into member values (default, 'admin', '1234', '관리자','0', '000-0000-0000','dlwo6466@naver.com',default);
 insert into member values (default, 'qwe123', '1234', '첫가입자',default,'010-1234-1234','wogml6466@gmail.com',default);
-insert into member values (default, 'admin1', '1234', '운영자','1','010-1234-1234','wogml6466@gmail.com',default);
+insert into member values (default, 'asd123', '1234', '운영자','1','010-1234-1234','wogml6466@gmail.com',default);
+insert into member values (default, 'zxc123', '1234', '연습생1','1','010-1234-1234','wogml6466@gmail.com',default);
 
 select * from member;

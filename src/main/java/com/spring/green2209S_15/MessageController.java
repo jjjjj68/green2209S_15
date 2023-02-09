@@ -24,7 +24,7 @@ public class MessageController {
 		}
 		else if(msgFlag.equals("JoinOk")) {
 			model.addAttribute("msg", "회원가입 되었습니다.");
-			model.addAttribute("url", "member/main");
+			model.addAttribute("url", "member/join");
 		}
 		else if(msgFlag.equals("JoinNo")) {
 			model.addAttribute("msg", "기입 사항을 다시한번 확인해주세요.");

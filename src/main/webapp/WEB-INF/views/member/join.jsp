@@ -145,6 +145,10 @@
     min-width: 15rem;
     margin-left: 200px;
 	}
+	.modal{
+  position: fixed;
+  transform: translate(0%, 30%);
+}
 </style>
 <script>
 	'use strict';
@@ -166,18 +170,12 @@
 	  let email = email1 + '@' + email2;
 	  let tel = myform.tel.value;
 		
-	  if(!regMid.test(mid)) {
-		  alert("아이디는 영문 소문자와 숫자, 언더바(_)만 사용가능합니다.(길이는 4~20자리까지 허용)");
-		  return false;
-	  }
-	  else if(!regPwd.test(pwd)) {
-		  alert("비밀번호는 1개이상의 문자와 특수문자 조합의 6~24 자리로 작성해주세요.");
-		  myform.pwd.focuse();
-		  return false;
-	  }
-	  else if(!regName.test(name)) {
+	  if(!regName.test(name)) {
 		  alert("성명은 한글과 영문대소문자만 사용가능합니다.");
-		  myform.name.focuse();
+		  return false;
+	  }
+	  else if(!regMid.test(mid)) {
+		  alert("아이디는 영문 소문자와 숫자, 언더바(_)만 사용가능합니다.(길이는 4~20자리까지 허용)");
 		  return false;
 	  }
 	  else if(!regEmail.test(email)) {
@@ -185,13 +183,10 @@
 	    myform.email1.focus();
 	    return false;
 	  }
-	  else {
-		  submitFlag = 1;
-	  }
 	  
 	  if(tel != "") {
 		  if(!regTel.test(tel)) {
-			  alert("전화번호 양식은 - 빼주세요");
+			  alert("번호만 (ex>01000000000) 입력해주세요");
 			  myform.tel.focus();
 			  return false;
 		  }
@@ -200,15 +195,77 @@
 		  }
 	  }
 	  
-	  if(submitFlag==0) {
+	  if(submitFlag==1) {
 		  if(idCheckSw == 0) {
 			  alert("아이디 중복체크버튼을 눌러주세요!");
   			document.getElementById("midBtn").focus();
 		  }
-		  
+		  else {
+			  myform.submit();
+		  }
 	  }
-	  
+	  else {
+		  alert("회원가입 실패~~");
+	  }
 	}
+/* 	
+	function moidCheck() {
+		let mid = idform.mid.value;
+    	if(mid.trim() == "" || mid.length<4 || mid.length>=20) {
+    		alert("아이디를 확인하세요!(아이디는 4~20자 이내)");
+    		idform.mid.focus();
+    		return false;
+    	}
+    	
+    	$.ajax({
+    		type  : "post",
+    		url   : "${ctp}/member/IdCheck",
+    		data  : {mid : mid},
+    		success:function(res) {
+    			if(res == "1") {
+    				alert("이미 사용중인 아이디 입니다.");
+    				$("#mid").focus();
+    			}
+    			else {
+    				alert("사용 가능한 아이디 입니다.");
+    				idCheckSw = 1;
+    			}
+    		},
+    		error : function() {
+    			alert("전송오류!");
+    		}
+    	}); 
+    }*/
+	
+ // id 중복체크
+    function idcheck() {
+    	let mid = myform.mid.value;
+    	if(mid.trim() == "" || mid.length<4 || mid.length>=20) {
+    		alert("아이디를 확인하세요!(아이디는 4~20자 이내)");
+    		myform.mid.focus();
+    		return false;
+    	}
+    	
+    	$.ajax({
+    		type  : "post",
+    		url   : "${ctp}/member/IdCheck",
+    		data  : {mid : mid},
+    		success:function(res) {
+    			if(res == "1") {
+    				alert("이미 사용중인 아이디 입니다.");
+    				$("#mid").focus();
+    			}
+    			else {
+    				alert("사용 가능한 아이디 입니다.");
+    				idCheckSw = 1;
+    			}
+    		},
+    		error : function() {
+    			alert("전송오류!");
+    		}
+    	});
+    }
+		
 </script>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -224,8 +281,8 @@
 			<hr style="background: #ccc;"/>
 		</div>
 		<div class="form-group">
-      <strong class="midmain">아이디</strong> 
-      <input type="text" class="form-control" name="mid" id="mid" value="" maxlength="12" title="아이디" style="width: 400px; display: inline-block; " readonly><button type="button" id="midBtn" class="btn ml10 btn_popopen" style="border-color: #000; margin-bottom: 3px;" data-toggle="modal" data-target="#myModal" >중복확인</button>
+      <strong class="midmain">아이디</strong> 																																																																												<!-- data-toggle="modal" data-target="#myModal" -->
+      <input type="text" class="form-control" name="mid" id="mid" maxlength="12" title="아이디" style="width: 400px; display: inline-block; " ><input type="button" id="midBtn" value="중복확인" onclick="idcheck()" class="btn ml10 btn_popopen" style="border-color: #000; margin-bottom: 3px;" />
     	<hr style="background: #ccc;"/>
 		</div>
 		<!-- idCheck 모달 -->
@@ -272,35 +329,33 @@
 </div>
 </form>
 <p><br/></p>
+<!-- 
+<form name="idform">
 <div class="modal" id="myModal">
     <div class="modal-dialog">
       <div class="modal-content">
       
-        <!-- Modal Header -->
         <div class="modal-header">
           <h4 class="modal-title">아이디 중복확인</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         
-        <!-- Modal body -->
         <div class="modal-body">
         	<p style="text-align: center;">사용할 아이디를 입력하세요</p>
-          <input type="text" name="idcheck" id="idcheck" maxlength="12" style="width:200px; margin-left: 130px">
-          <input type="button" value="중복확인" class="btn btn_md type3" style="width:65px; height: 35px; padding: 0; margin :0; min-height: 0; min-width: 0; display:inline-block;"> 
+          <input type="text" name="mid" id="mid" maxlength="12" style="width:200px; margin-left: 130px">
+          <input type="button" value="중복확인" data-toggle="modal" data-id="mid" onclick="moidCheck(); return false;" class="btn btn_md type3" style="width:65px; height: 35px; padding: 0; margin :0; min-height: 0; min-width: 0; display:inline-block;">
         </div>
         
-        <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">닫 기</button>
+	          <button type="button" class="btn btn-info" onclick="idcheckok()" data-dismiss="modal">확 인</button>
+	          <button type="button" class="btn btn-danger" data-dismiss="modal">닫 기</button>
         </div>
         
       </div>
     </div>
   </div>
-  
-</div>
-
-
+</form>
+ -->
 </body>
 
 

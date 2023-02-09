@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.green2209S_15.service.MemberService;
 import com.spring.green2209S_15.vo.MemberVO;
@@ -96,6 +97,18 @@ public class MemberController {
 		
 		if(res == 1) return "redirect:/msg/JoinOk";
 		return "redirect:/msg/JoinNo";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/IdCheck", method = RequestMethod.POST)
+	public String IdCheckPost(String mid) {
+		String res = "0";	
+		MemberVO vo = memberService.getMemberIdcheck(mid);
+		
+		if(vo != null) res = "1";
+		
+		return res;
+		
 	}
 	
 }
