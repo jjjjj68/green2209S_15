@@ -19,7 +19,7 @@
 	<div id="nav">
 		<div class="inner">
 			<ul class="nav_menu">
-				<li><a href="">일일입장 예약신청</a></li>
+				<li><a href="${ctp}/reservation/reservation">일일입장 예약신청</a></li>
 				<li><a href="">신청방법안내</a></li>
 				<li><a href="">시설이용안내</a></li>
 				<li><a href="">오시는길</a></li>
