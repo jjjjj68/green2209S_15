@@ -11,19 +11,19 @@
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp"></jsp:include>
 </head>
 <style>
-    #td1,#td8,#td15,#td22,#td29,#td36 {color:red}
-    #td7,#td14,#td21,#td28,#td35 {color:blue}
-    .today {
-      background-color: pink;
-      color: #fff;
-      font-weight: bolder;
-    }
-    td {
-      text-align: left;
-      vertical-align: top;
-    }
-  </style>
+	.today_after {
+		border-bottom: 2px solid #000 ;
+		width:50%; 
+		margin: auto; 
+		display: block; 
+		text-align: center; 
+		margin-bottom:30px;
+		padding-top: 30px;
+	}
+</style>
+<script>
 
+</script>
 
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -35,77 +35,32 @@
 	<span style="float: right;  font-weight: 40px;"><img src="${ctp}/images/home10.png" style=" width: 20px;height: 20px;">&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp; </span>
 	<h2 style="text-align: center; font-size: 52px;font-weight: bolder; padding-left:75px;  margin-bottom: 2.5rem;">일일입장 예약신청</h2>
 </div>
-<div class="text-center">
-    <button type="button" onclick="location.href='${ctp}/reservation/reservation?yy=${yy-1}&mm=${mm}';" class="btn btn-secondary btn-sm" title="이전년도">◁◁</button>
-    <button type="button" onclick="location.href='${ctp}/reservation/reservation?yy=${yy}&mm=${mm-1}';" class="btn btn-secondary btn-sm" title="이전월">◀</button>
-    <font size="5">${yy}년 ${mm+1}월</font>
-    <button type="button" onclick="location.href='${ctp}/reservation/reservation?yy=${yy}&mm=${mm+1}';" class="btn btn-secondary btn-sm" title="다음월">▶</button>
-    <button type="button" onclick="location.href='${ctp}/reservation/reservation?yy=${yy+1}&mm=${mm}';" class="btn btn-secondary btn-sm" title="다음년도">▷▷</button>
-    &nbsp;&nbsp;
-    <button type="button" onclick="location.href='${ctp}/reservation/reservation';" class="btn btn-secondary btn-sm" title="오늘날짜"><i class="fa fa-home"></i></button>
-  </div>
-  <br/>
-  <div class="text-center">
-    <table class="table table-bordered" style="width:1100px; height:450px;">
-      <tr class="text-center" style="background-color:#eee">
-        <th style="width:13%; color:red; vertical-align:middle">일</th>
+
+<form class="myform">
+	<div class="" style="background : #F5F5F5; width: 1100px; height: 590px; margin: auto; text-align: right;">
+	<div class="today_after" style="font-size: 20px; color: #222;">
+		${today} ~ ${afterDate}
+	</div>
+		<table class="table table-bordered" style="padding: 30px 60px;">
+			<tr class="" >
+				<th style="width:13%; color:red; vertical-align:middle">일</th>
         <th style="width:13%; vertical-align:middle">월</th>
         <th style="width:13%; vertical-align:middle">화</th>
         <th style="width:13%; vertical-align:middle">수</th>
         <th style="width:13%; vertical-align:middle">목</th>
         <th style="width:13%; vertical-align:middle">금</th>
         <th style="width:13%; color:blue; vertical-align:middle">토</th>
-      </tr>
-      <tr>
-        <c:set var="cnt" value="${1}"/>
-        <!-- 시작일 이전의 공백을 이전달의 날짜로 채워준다. -->
-        <c:forEach var="preDay" begin="${preLastDay-(startWeek-2)}" end="${preLastDay}">
-          <td style="color:#ccc;font-size:0.6em">${prevYear}-${prevMonth+1}-${preDay}</td>
-          <c:set var="cnt" value="${cnt+1}"/>
-        </c:forEach>
-        
-        <!-- 해당월에 대한 날짜를 마지막일자까지 반복 출력한다.(단, gap이 7이되면 줄바꿈한다.) -->
-        <c:forEach begin="1" end="${lastDay}" varStatus="st">
-          <c:set var="todaySw" value="${toYear==yy && toMonth==mm && toDay==st.count ? 1 : 0}"/>
-          <td id="td${cnt}" ${todaySw==1 ? 'class=today' : ''} style="font-size:0.9em">
-            <c:set var="ymd" value="${yy}-${mm+1}-${st.count}"/>
-            <a href="scheduleMenu?ymd=${ymd}">
-            	${st.count}<br/>
-            	
-            	<!-- 해당날짜에 일정이 있으면 part를 출력하게 한다. -->
-            	<c:set var="tempPart" value=""/>
-            	<c:set var="tempCnt" value="0"/>
-            	<c:set var="tempSw" value="0"/>
-            	
-              <c:forEach var="vo" items="${vos}">
-                <c:if test="${fn:substring(vo.SDate,8,10)==st.count}">
-                  <c:if test="${vo.part != tempPart}">
-                    <c:if test="${tempSw != 0}">
-	                    - ${tempPart}(${tempCnt})건<br/>
-	                    <c:set var="tempCnt" value="0"/>
-                    </c:if>
-                    <c:set var="tempPart" value="${vo.part}"/>                  
-                  </c:if>
-                  <c:set var="tempSw" value="1"/>
-                  <c:set var="tempCnt" value="${tempCnt + 1}"/>
-                </c:if>
-            	</c:forEach>
-            	<c:if test="${tempCnt != 0}">- ${tempPart}(${tempCnt})건</c:if>
-            </a>
-          </td>
-          <c:if test="${cnt % 7 == 0}"></tr><tr></c:if>  <!-- 한주가 꽉차면 줄바꾸기 한다. -->
-          <c:set var="cnt" value="${cnt + 1}"/>
-        </c:forEach>
-        
-        <!-- 마지막일 이후를 다음달의 일자로 채워준다. -->
-        <c:if test="${nextStartWeek != 1}">
-	        <c:forEach begin="${nextStartWeek}" end="7" varStatus="nextDay">
-	          <td style="color:#ccc;font-size:0.6em">${nextYear}-${nextMonth+1}-${nextDay.count}</td>
-	        </c:forEach>
-        </c:if>
-      </tr>
-    </table>
-  </div>
+			</tr>
+				<c:set var="cnt" value="${1}" />
+				<c:forEach var="preDay" begin="${preLastDay - (startWeek-2)}" end="${preLastDay}"  varStatus="status">
+					t
+				</c:forEach>
+				
+		</table>
+	</div>
+
+</form>
+
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 </body>
