@@ -20,14 +20,8 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int setJoinOk(MemberVO vo) {
-		int res =0;
-		if (vo != null) {
-			memberDAO.setJoinOk(vo);
-			res = 1;
-			System.out.println("res =" + res);
-		}
-		
-		return res;
+	    int res = memberDAO.setJoinOk(vo);
+	    return res;
 	}
 
 

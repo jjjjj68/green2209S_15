@@ -94,7 +94,8 @@ public class MemberController {
 		vo.setPwd(passwordEncoder.encode(vo.getPwd()));
 		
 		int res = memberService.setJoinOk(vo);
-		
+		System.out.println("vo :"+ vo);
+		System.out.println("res :"+ res);
 		if(res == 1) return "redirect:/msg/JoinOk";
 		return "redirect:/msg/JoinNo";
 	}

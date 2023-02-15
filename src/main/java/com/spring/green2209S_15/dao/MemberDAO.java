@@ -11,5 +11,4 @@ public interface MemberDAO {
 	public int setJoinOk(@Param("vo") MemberVO vo);
 
 
-
 }

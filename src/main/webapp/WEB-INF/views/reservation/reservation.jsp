@@ -53,7 +53,7 @@
 			</tr>
 				<c:set var="cnt" value="${1}" />
 				<c:forEach var="preDay" begin="${preLastDay - (startWeek-2)}" end="${preLastDay}"  varStatus="status">
-					t
+					
 				</c:forEach>
 				
 		</table>

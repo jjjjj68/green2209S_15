@@ -112,26 +112,6 @@
     color: #555555;
 	}
 </style>
-<script>
-	'use strict';
-	/* function loginProc() {
-		let mid = document.getElementById("mid").value;
-		let pwd = document.getElementById("pwd").value;
-		
-		if(mid.trim() == "") {
-			alert("아이디를 입력하여 주십시요.");
-			document.getElementBtId("mid").focus();
-		}
-		else if (pwd.trim() == "") {
-			alert("비밀번호를 입력하여 주십시요.");
-			document.getElementBtId("pwd").focus();
-		}
-		else {
-			myform.submit();
-		}
-	}
-	 */
-</script>
 <body>
 <p><br/></p>
 <div class="container">

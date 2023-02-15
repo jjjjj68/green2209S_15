@@ -20,4 +20,6 @@ insert into member values (default, 'qwe123', '1234', '첫가입자',default,'01
 insert into member values (default, 'asd123', '1234', '운영자','1','010-1234-1234','wogml6466@gmail.com',default);
 insert into member values (default, 'zxc123', '1234', '연습생1','1','010-1234-1234','wogml6466@gmail.com',default);
 
+select * from member where admin = #{admin};	
+
 select * from member;
