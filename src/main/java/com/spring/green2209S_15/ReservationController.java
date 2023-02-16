@@ -1,8 +1,5 @@
 package com.spring.green2209S_15;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +19,8 @@ public class ReservationController {
 		reservationService.getReservation();
 		return "reservation/reservation";
 	}
+	
 	/*
-	// 2주차 까지 뽑아내기
 	@RequestMapping(value = "/reservation", method=RequestMethod.GET)
 	public String dateGet() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");	// 형식
