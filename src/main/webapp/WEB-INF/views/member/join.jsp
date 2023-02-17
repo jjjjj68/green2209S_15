@@ -208,34 +208,6 @@
 		  alert("회원가입 실패~~");
 	  }
 	}
-/* 	
-	function moidCheck() {
-		let mid = idform.mid.value;
-    	if(mid.trim() == "" || mid.length<4 || mid.length>=20) {
-    		alert("아이디를 확인하세요!(아이디는 4~20자 이내)");
-    		idform.mid.focus();
-    		return false;
-    	}
-    	
-    	$.ajax({
-    		type  : "post",
-    		url   : "${ctp}/member/IdCheck",
-    		data  : {mid : mid},
-    		success:function(res) {
-    			if(res == "1") {
-    				alert("이미 사용중인 아이디 입니다.");
-    				$("#mid").focus();
-    			}
-    			else {
-    				alert("사용 가능한 아이디 입니다.");
-    				idCheckSw = 1;
-    			}
-    		},
-    		error : function() {
-    			alert("전송오류!");
-    		}
-    	}); 
-    }*/
 	
  // id 중복체크
     function idcheck() {
@@ -266,13 +238,28 @@
     	});
     }
 		
+    // 이메일선택
+    function selectEmail(ele){
+        var $ele = $(ele);
+        var $email2 = $('input[name=email2]');
+
+        // '1'인 경우 직접입력
+        if($ele.val() == "1"){
+            $email2.attr('readonly', false);
+            $email2.val('');
+        } else {
+            $email2.attr('readonly', true);
+            $email2.val($ele.val());
+        }
+    }
+    
 </script>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 <p><br/></p>
-<form name="myform">
+<form name="myform" action="">
 <div class="container">
-	<h1 class="h1" style="font-weight: 400; position: relative;">회원가입</h1>
+	<h1 class="h1" style="font-weight: 400; position: relative; padding-left: 20px;">회원가입</h1>
 	<hr style="border: 0; height: 1.5px; background: #777;"/>
 	<div class="privacy">
 		<div class="form-group">
@@ -306,56 +293,31 @@
       <input type="text" class="form-control" name="tel" id="tel"  maxlength="11" title="핸드폰번호" style="width: 400px; display: inline-block; ">
     	<hr style="background: #ccc;"/>
 		</div>
+		
 		<div class="form-group">
 			<strong class="emailmain">이메일</strong> 
-			<input type="text" class="form-control" name="email1" id="email1"  maxlength="30" title="이메일 아이디를 입력하세요"  style="width: 190px; display: inline-block;" >
-			<span class="form-term">@</span>
-			<input type="text" class="form-control" name="email2" id="email2"  maxlength="30" title="이메일 주소를 입력하세요"  style="width: 190px; display: inline-block;" >
-			<select class="form-control" title="이메일 주소를 선택하세요" onchange="mail2(this.value, 'email2'); return false;" style="width: 150px; display: inline-block;">
-	      <option value="">직접입력</option>
-	      <option value="naver.com" selected>naver.com</option>
-		    <option value="gmail.com">gmail.com</option>
-		    <option value="hanmail.net">hanmail.net</option>
-		    <option value="hotmail.com">hotmail.com</option>
-		    <option value="nate.com">nate.com</option>
-		    <option value="yahoo.com">yahoo.com</option>
-    	</select>
-    	<hr style="background: #ccc;"/>
+	    <input name="email1" id="email1" type="text" maxlength="30" title="이메일 아이디를 입력하세요"  style="width: 190px; height:52px; display: inline-block; border: 1px solid #ced4da;">
+	    @
+	    <input name="email2" id="email2" type="text" maxlength="30" title="이메일 주소를 입력하세요"  style="width: 190px; height:52px; display: inline-block; border: 1px solid #ced4da;">
+	    <select name="select_email" onChange="selectEmail(this)" style="width: 150px; height:52px; display: inline-block; ">
+	        <option value="1" selected>&nbsp;직접입력</option>
+		      <option value="naver.com" >naver.com</option>
+			    <option value="gmail.com">gmail.com</option>
+			    <option value="hanmail.net">hanmail.net</option>
+			    <option value="hotmail.com">hotmail.com</option>
+			    <option value="nate.com">nate.com</option>
+			    <option value="yahoo.com">yahoo.com</option>
+	    </select>
+	    <hr style="background: #ccc;"/>
 		</div>
+
 		<div class="btns mt50">
 	   <button class="btn btn_back" onclick="history.go(-1)" return false;" style="border: 1px solid #000;">이전단계</button>
-	   <button class="btn btn_md type3" type="button" onclick="joinCheck()" >다음단계</button>
+	   <button class="btn btn_md type3" type="submit" onclick="joinCheck()" >다음단계</button>
     </div>
 </div>
 </form>
 <p><br/></p>
-<!-- 
-<form name="idform">
-<div class="modal" id="myModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-      
-        <div class="modal-header">
-          <h4 class="modal-title">아이디 중복확인</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        
-        <div class="modal-body">
-        	<p style="text-align: center;">사용할 아이디를 입력하세요</p>
-          <input type="text" name="mid" id="mid" maxlength="12" style="width:200px; margin-left: 130px">
-          <input type="button" value="중복확인" data-toggle="modal" data-id="mid" onclick="moidCheck(); return false;" class="btn btn_md type3" style="width:65px; height: 35px; padding: 0; margin :0; min-height: 0; min-width: 0; display:inline-block;">
-        </div>
-        
-        <div class="modal-footer">
-	          <button type="button" class="btn btn-info" onclick="idcheckok()" data-dismiss="modal">확 인</button>
-	          <button type="button" class="btn btn-danger" data-dismiss="modal">닫 기</button>
-        </div>
-        
-      </div>
-    </div>
-  </div>
-</form>
- -->
 </body>
 
 

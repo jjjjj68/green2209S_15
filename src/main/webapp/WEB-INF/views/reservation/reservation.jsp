@@ -59,8 +59,8 @@
 	.label {display:block; width:110px; height:30px; margin:auto; padding:6px 0; font-size:15px; color:#009ce1; line-height:1; text-align:center; letter-spacing:-0.12em; border:1px solid #009ce1; background-color:#fff; border-radius:4px;}
 	
 	
-	.imposi-e {     display: block;margin-top: 5px;width: 110px;height: 30px;padding: 6px 0;font-size: 15px;color: #ababab;line-height: 1;text-align: center;letter-spacing: -0.12em;border: 1px solid #ababab;background-color: #fff;border-radius: 4px;}
-	.imposi-i {     display: block;margin-top: 5px;margin-left:5px; width: 110px;height: 30px;padding: 6px 0;font-size: 15px;color: #6f6f6f;line-height: 1;text-align: center;letter-spacing: -0.12em;border: 1px solid #6f6f6f;background-color: #fff;border-radius: 4px;}
+	.imposi-e {     display: block;margin-top: 5px;margin-left:7.5px; width: 110px;height: 30px;padding: 6px 0;font-size: 15px;color: #ababab;line-height: 1;text-align: center;letter-spacing: -0.12em;border: 1px solid #ababab;background-color: #fff;border-radius: 4px;}
+	.imposi-i {     display: block;margin-top: 5px; width: 110px;height: 30px;padding: 6px 0;font-size: 15px;color: #6f6f6f;line-height: 1;text-align: center;letter-spacing: -0.12em;border: 1px solid #6f6f6f;background-color: #fff;border-radius: 4px;}
 	
 	
 	.tbl_calendar {table-layout:fixed; width:100%; border-top:1px solid #a6a6a6;}
@@ -194,6 +194,7 @@
 </table>
 		 
 	</div>
+	<!-- 
 	<div class="tennis_court" style="position:relative; ">
   <ul class="court_list">
     <li class="t_list0"> <a id="tennis_court_img_a_1_1" href=""> <span
@@ -255,6 +256,7 @@
           alt="테니스코드19"> </a> </li>
   </ul>
 </div>
+ -->
 </form>
 
 <p><br/></p>
