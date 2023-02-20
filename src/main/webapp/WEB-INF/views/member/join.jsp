@@ -161,7 +161,7 @@
     let regEmail =/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
     let regTel = /\d{2,3}\d{3,4}\d{4}$/g;	
     
-    let submitFlag = 0;
+    let submitFlag = 0; 
     
 		let mid = myform.mid.value;
 		let name = myform.name.value;
@@ -201,6 +201,9 @@
   			document.getElementById("midBtn").focus();
 		  }
 		  else {
+			  myform.email.value = email;
+			  myform.tel.value = tel;
+			  
 			  myform.submit();
 		  }
 	  }
@@ -245,7 +248,7 @@
 
         // '1'인 경우 직접입력
         if($ele.val() == "1"){
-            $email2.attr('readonly', false);
+            $email2.attr('readonly', false);f
             $email2.val('');
         } else {
             $email2.attr('readonly', true);
@@ -257,7 +260,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 <p><br/></p>
-<form name="myform" action="">
+<form name="myform"  method="post" enctype="multipart/form-data">
 <div class="container">
 	<h1 class="h1" style="font-weight: 400; position: relative; padding-left: 20px;">회원가입</h1>
 	<hr style="border: 0; height: 1.5px; background: #777;"/>
@@ -275,18 +278,13 @@
 		<!-- idCheck 모달 -->
 		<div class="form-group">
 			<form>
-				<strong class="pwdmain">비밀번호</strong> 
-				<input type="password" class="form-control" name="password" id="password" value="" maxlength="15" title="새 비밀번호(영문 + 숫자 + 특수문자, cg=10~20자)" placeholder="새 비밀번호" style="width: 400px; display: inline-block;" >
+				<strong class="pwdmain">비밀번호</strong>
+				<input type="password" class="form-control" name="pwd" id="pwd" value="" maxlength="15" title="새 비밀번호(영문 + 숫자 + 특수문자, cg=10~20자)" placeholder="새 비밀번호" style="width: 400px; display: inline-block;" >
         <progress max="3" value="0" id="meter"></progress>
   	  </form>
 	  <div class="textbox"></div>
 		<hr style="background: #ccc;"/>
 		</div>
-		</div>
-		<div class="form-group">
-			<strong class="pwdsub">비밀번호 확인</strong> 
-			<input type="password" class="form-control" name="password1" id="password1" value="" maxlength="15" title="비밀번호 확인" placeholder="비밀번호 확인" style="width: 400px; display: inline-block;" >
-			<hr style="background: #ccc;"/>
 		</div>
 		<div class="form-group">
       <strong class="telmain">핸드폰</strong> 
@@ -296,10 +294,11 @@
 		
 		<div class="form-group">
 			<strong class="emailmain">이메일</strong> 
+			<input type="hidden" name="email" value=""/>
 	    <input name="email1" id="email1" type="text" maxlength="30" title="이메일 아이디를 입력하세요"  style="width: 190px; height:52px; display: inline-block; border: 1px solid #ced4da;">
 	    @
 	    <input name="email2" id="email2" type="text" maxlength="30" title="이메일 주소를 입력하세요"  style="width: 190px; height:52px; display: inline-block; border: 1px solid #ced4da;">
-	    <select name="select_email" onChange="selectEmail(this)" style="width: 150px; height:52px; display: inline-block; ">
+	    <select  onChange="selectEmail(this)" style="width: 150px; height:52px; display: inline-block; ">
 	        <option value="1" selected>&nbsp;직접입력</option>
 		      <option value="naver.com" >naver.com</option>
 			    <option value="gmail.com">gmail.com</option>
@@ -316,13 +315,15 @@
 	   <button class="btn btn_md type3" type="submit" onclick="joinCheck()" >다음단계</button>
     </div>
 </div>
+<input type="hidden" name="email"/>
+<input type="hidden" name="tel"/>
 </form>
 <p><br/></p>
 </body>
 
 
 <script>
-	const password = document.querySelector("#password");
+	const password = document.querySelector("#pwd");
 	const strengthBar = document.querySelector("#meter");
 	var display = document.querySelector(".textbox");
 	

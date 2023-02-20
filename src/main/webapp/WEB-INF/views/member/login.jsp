@@ -115,7 +115,7 @@
 <body>
 <p><br/></p>
 <div class="container">
-	<form name="myform" method="post">
+	<form name="myform" method="post" enctype="multipart/form-data">
 	<!-- header -->
 	<jsp:include page="/WEB-INF/views/include/header.jsp" />
 	<p><br/></p>
