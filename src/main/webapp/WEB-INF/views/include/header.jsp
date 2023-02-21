@@ -101,7 +101,7 @@
                 </c:if>
                <!--  <li><a href="${ctp}/member/login"><img src="${ctp}/images/login1.png" ><span class="sub">로 그 인</span></a></li> -->
                 <c:if test="${!empty sLevel}">
-                	<li><a href="${ctp}/member/Logout" ><img src="${ctp}/images/login1.png" ><span class="sub">로그아웃</span></a></li>
+                	<li><a href="${ctp}/member/logout" ><img src="${ctp}/images/login1.png" ><span class="sub">로그아웃</span></a></li>
                 </c:if>
              </ul>
             </div>

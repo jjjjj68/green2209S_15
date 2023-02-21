@@ -41,9 +41,9 @@ public class MemberController {
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)  
 	public String loginPost(HttpServletRequest request, HttpServletResponse response, HttpSession session,
-			@RequestParam(name = "mid", defaultValue = "", required = false)String mid,
-			@RequestParam(name = "pwd", defaultValue = "", required = false)String pwd,
-			@RequestParam(name = "idCheck", defaultValue = "", required = false)String idCheck) {
+		@RequestParam(name = "mid", defaultValue = "", required = false)String mid,
+		@RequestParam(name = "pwd", defaultValue = "", required = false)String pwd,
+		@RequestParam(name = "idCheck", defaultValue = "", required = false)String idCheck) {
 
 		MemberVO vo = memberService.getMemberIdcheck(mid);
 		
@@ -99,7 +99,7 @@ public class MemberController {
 		
 		//System.out.println("res :"+ res);
 		if(res == 1) return "redirect:/msg/JoinOk";
-		return "redirect:/msg/JoinNo";
+		else return "redirect:/msg/JoinNo";
 	}
 	
 	@ResponseBody

@@ -155,62 +155,81 @@
 	let idCheckSw = 0;
 	
 	function joinCheck() {
-		let regMid = /^[a-z0-9_]{4,20}$/;
-		let regPwd = /(?=.*[0-9a-zA-Z]).{4,20}$/;
-    let regName = /^[가-힣a-zA-Z]+$/;
-    let regEmail =/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
-    let regTel = /\d{2,3}\d{3,4}\d{4}$/g;	
-    
-    let submitFlag = 0; 
-    
-		let mid = myform.mid.value;
-		let name = myform.name.value;
-		let email1 = myform.email1.value;
-		let email2 = myform.email2.value;
-	  let email = email1 + '@' + email2;
-	  let tel = myform.tel.value;
-		
-	  if(!regName.test(name)) {
-		  alert("성명은 한글과 영문대소문자만 사용가능합니다.");
-		  return false;
-	  }
-	  else if(!regMid.test(mid)) {
-		  alert("아이디는 영문 소문자와 숫자, 언더바(_)만 사용가능합니다.(길이는 4~20자리까지 허용)");
-		  return false;
-	  }
-	  else if(!regEmail.test(email)) {
-	    alert("이메일 형식에 맞지않습니다.");
-	    myform.email1.focus();
-	    return false;
-	  }
-	  
-	  if(tel != "") {
-		  if(!regTel.test(tel)) {
-			  alert("번호만 (ex>01000000000) 입력해주세요");
-			  myform.tel.focus();
-			  return false;
+		  let regMid = /^[a-z0-9_]{4,20}$/;
+		  let regPwd = /(?=.*[0-9a-zA-Z]).{4,20}$/;
+		  let regName = /^[가-힣a-zA-Z]+$/;
+		  let regEmail =/^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+		  let regTel = /\d{2,3}\d{3,4}\d{4}$/g;  
+
+		  let submitFlag = 0; 
+
+		  let mid = myform.mid.value;
+		  let name = myform.name.value;
+		  let email1 = myform.email1.value;
+		  let email2 = myform.email2.value;
+		  let email = email1 + '@' + email2;
+		  let tel = myform.tel.value;
+
+		  if (name === "") {
+		    alert("성명을 입력해주세요.");
+		    myform.name.focus();
+		    return false;
+		  }
+		  else if (mid === "") {
+		    alert("아이디를 입력해주세요.");
+		    myform.mid.focus();
+		    return false;
+		  }
+		  else if (email1 === "" || email2 === "") {
+		    alert("이메일을 입력해주세요.");
+		    myform.email1.focus();
+		    return false;
+		  }
+
+		  if(!regName.test(name)) {
+		    alert("성명은 한글과 영문대소문자만 사용가능합니다.");
+		    myform.name.focus();
+		    return false;
+		  }
+		  else if(!regMid.test(mid)) {
+		    alert("아이디는 영문 소문자와 숫자, 언더바(_)만 사용가능합니다.(길이는 4~20자리까지 허용)");
+		    myform.mid.focus();
+		    return false;
+		  }
+		  else if(!regEmail.test(email)) {
+		    alert("이메일 형식에 맞지않습니다.");
+		    myform.email1.focus();
+		    return false;
+		  }
+
+		  if(tel != "") {
+		    if(!regTel.test(tel)) {
+		      alert("번호만 (ex>01000000000) 입력해주세요");
+		      myform.tel.focus();
+		      return false;
+		    }
+		    else {
+		      submitFlag = 1;
+		    }
+		  }
+
+		  if(submitFlag==1) {
+		    if(idCheckSw == 0) {
+		      alert("아이디 중복체크버튼을 눌러주세요!");
+		      document.getElementById("midBtn").focus();
+		    }
+		    else {
+		      myform.email.value = email;
+		      myform.tel.value = tel;
+
+		      myform.submit();
+		    }
 		  }
 		  else {
-			  submitFlag = 1;
+		    alert("회원가입 실패~~");
 		  }
-	  }
-	  
-	  if(submitFlag==1) {
-		  if(idCheckSw == 0) {
-			  alert("아이디 중복체크버튼을 눌러주세요!");
-  			document.getElementById("midBtn").focus();
-		  }
-		  else {
-			  myform.email.value = email;
-			  myform.tel.value = tel;
-			  
-			  myform.submit();
-		  }
-	  }
-	  else {
-		  alert("회원가입 실패~~");
-	  }
-	}
+		}
+
 	
  // id 중복체크
     function idcheck() {
@@ -312,7 +331,7 @@
 
 		<div class="btns mt50">
 	   <button class="btn btn_back" onclick="history.go(-1)" return false;" style="border: 1px solid #000;">이전단계</button>
-	   <button class="btn btn_md type3" type="submit" onclick="joinCheck()" >다음단계</button>
+	   <button class="btn btn_md type3" type="button" onclick="joinCheck()" >다음단계</button>
     </div>
 </div>
 <input type="hidden" name="email"/>
