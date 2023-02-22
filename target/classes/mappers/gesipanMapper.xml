@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.green2209S_15.dao.GesipanDAO">
-	  
-	  
+
+	<select id="getGesipan" resultType="com.spring.green2209S_15.vo.GesipanVO">
+  	select * from gesipan order by idx desc limit #{startIndexNo},#{pageSize};
+  </select>
+  
+  <select id="totRecCnt" resultType="int">
+		select count(*) from gesipan;
+	</select>
+	
+	<insert id="setGesipanInput">
+		insert into gesipan values (default,#{vo.mid},#{vo.title},#{vo.content},default);
+	</insert>
 </mapper>

@@ -42,6 +42,14 @@ public class MessageController {
     	  model.addAttribute("msg", "로그인 이후 이용해 주세요.");
     	  model.addAttribute("url", "member/login");
       }
+      else if(msgFlag.equals("gesipanInputOk")) {
+    	  model.addAttribute("msg", "게시글이 정상적으로 등록되었습니다.");
+    	  model.addAttribute("url", "gesipan/gesipan");
+      }
+      else if(msgFlag.equals("gesipanInputNo")) {
+    	  model.addAttribute("msg", "내용을 기입해 주세요.");
+    	  model.addAttribute("url", "gesipan/input");
+      }
       
 		return "include/message";
 	}

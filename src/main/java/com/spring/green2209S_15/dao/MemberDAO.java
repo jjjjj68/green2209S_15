@@ -10,5 +10,7 @@ public interface MemberDAO {
 
 	public int setJoinOk(@Param("vo") MemberVO vo);
 
+	public int totRecCnt(@Param("mid") String mid);
+
 
 }

@@ -8,3 +8,5 @@ create table gesipan (
 );
 
 show tables;
+
+select * from gesipan; 

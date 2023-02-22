@@ -8,6 +8,5 @@ public interface MemberService {
 
 	public int setJoinOk(MemberVO vo);
 
-
 	
 }
