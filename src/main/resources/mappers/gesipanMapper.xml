@@ -10,7 +10,27 @@
 		select count(*) from gesipan;
 	</select>
 	
+	<select id="getPrevNext" resultType="com.spring.green2209S_15.vo.GesipanVO">
+  	select idx,title from gesipan where idx in (
+  	(select idx from gesipan where <![CDATA[idx < #{idx}]]> order by idx desc limit 1),
+  	(select idx from gesipan where <![CDATA[idx > #{idx}]]> limit 1));
+  </select>
+	
+	<select id="getContent" resultType="com.spring.green2209S_15.vo.GesipanVO">
+  	select * from gesipan where idx = #{idx};
+  </select>
+	
 	<insert id="setGesipanInput">
 		insert into gesipan values (default,#{vo.mid},#{vo.title},#{vo.content},default);
 	</insert>
+	
+	
+	<update id="setUpdate">
+  	update  gesipan set title=#{vo.title}, content=#{vo.content} where idx = #{vo.idx};
+  </update>
+  
+  
+  <delete id="setDeleteOk">
+    delete from gesipan where idx = #{idx};
+  </delete>
 </mapper>

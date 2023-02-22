@@ -50,6 +50,14 @@ public class MessageController {
     	  model.addAttribute("msg", "내용을 기입해 주세요.");
     	  model.addAttribute("url", "gesipan/input");
       }
+      else if(msgFlag.equals("UpdateOk")) {
+    	  model.addAttribute("msg", "게시글이 수정되었습니다.");
+    	  model.addAttribute("url", "gesipan/gesipan");
+      }
+      else if(msgFlag.equals("DeleteOk")) {
+    	  model.addAttribute("msg", "게시글이 삭제되었습니다.");
+    	  model.addAttribute("url", "gesipan/gesipan");
+      }
       
 		return "include/message";
 	}

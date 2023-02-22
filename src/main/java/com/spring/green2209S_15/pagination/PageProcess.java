@@ -34,9 +34,8 @@ public class PageProcess {
 			totRecCnt = webMessageDAO.totRecCnt(mid, mSw);
 		}
 		*/
-		
 		int totPage = (totRecCnt % pageSize)==0 ? totRecCnt / pageSize : (totRecCnt / pageSize) + 1;
-		int startIndexNo = (pag - 1) * pageSize; 
+		int startIndexNo = (pag - 1) * pageSize;
 		int curScrStartNo = totRecCnt - startIndexNo;
 		
 		int blockSize = 3;
