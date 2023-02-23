@@ -21,7 +21,7 @@
   function fCheck() {
   	let title = myform.title.value;
   	let content = myform.content.value;
-  	
+  	 
   	if(title.trim() == "") {
   		alert("게시글 제목을 입력하세요");
   		myform.title.focus();
