@@ -71,9 +71,6 @@
 	.tbl_calendar .date {display:block; margin-bottom:30px; font-size:18px; color:#222;}
 	.tbl_calendar .mo_th {display:none;}
 </style>
-<script>
-
-</script>
 
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
@@ -83,7 +80,8 @@
 <div class="container">
 	<span style="float: right; ">일일입장 예약신청</span>
 	<span style="float: right;  font-weight: bold;"><img src="${ctp}/images/home10.png" style=" width: 20px;height: 20px;">&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp; </span>
-	<h2 style="text-align: center; font-size: 52px;font-weight: bolder; padding-left:75px;  margin-bottom: 2.5rem;">일일입장 예약신청</h2>
+	<p><br/></p>
+	<h2 style="text-align: center; font-size: 52px;font-weight: bolder;  margin-bottom: 2.5rem;">일일입장 예약신청</h2>
 </div>
 
 <form class="myform">
@@ -129,17 +127,17 @@
 		    </tr>
 		  </thead>
 		  <tbody>
-		    <tr class="mo_th">
-		      <th scope="col" class="txt_red">12</th>
+		    <tr class="mo_th" >
+		      <!-- <th scope="col" class="txt_red">12</th>
 		      <th scope="col">13</th>
 		      <th scope="col">14</th>
 		      <th scope="col">15</th>
 		      <th scope="col">16</th>
 		      <th scope="col">17</th>
-		      <th scope="col">18</th>
+		      <th scope="col">18</th> -->
 		    </tr>
-		    <tr>
-		      <td><span class="date  txt_red">12</span><span></span><span></span></td>
+		    <tr id="first_week">
+		      <!-- <td><span class="date  txt_red">12</span><span></span><span></span></td>
 		      <td><span class="date ">13</span><span></span><span></span></td>
 		      <td><span class="date ">14</span><span></span><span></span></td>
 		      <td><span class="date ">15</span><span></span><span></span></td>
@@ -147,19 +145,19 @@
 		      <td><a href="javascript:fn_tennis_time_list('20230217')"><span class="date ">17</span><span class="label">가능
 		            0건</span><span class="imposi-e">마감 115건</span></a></td>
 		      <td><a href="javascript:fn_tennis_time_list('20230218')"><span class="date ">18</span><span class="label">가능
-		            0건</span><span class="imposi-e">마감 214건</span></a></td>
+		            0건</span><span class="imposi-e">마감 214건</span></a></td> -->
 		    </tr>
 		    <tr class="mo_th">
-		      <th scope="col" class="txt_red">19</th>
+		      <!-- <th scope="col" class="txt_red">19</th>
 		      <th scope="col">20</th>
 		      <th scope="col">21</th>
 		      <th scope="col">22</th>
 		      <th scope="col">23</th>
 		      <th scope="col">24</th>
-		      <th scope="col">25</th>
+		      <th scope="col">25</th> -->
 		    </tr>
-		    <tr>
-		      <td>
+		    <tr id="second_week">
+		      <!-- <td>
 			      <a href="javascript:fn_tennis_time_list('20230219')">
 				      <span class="date  txt_red">19</span>
 				      <spanclass="label">가능 0건</span>
@@ -188,7 +186,7 @@
 		      </td>
 		      <td><span class="date ">23</span><span></span><span></span></td>
 		      <td><span class="date ">24</span><span></span><span></span></td>
-		      <td><span class="date ">25</span><span></span><span></span></td>
+		      <td><span class="date ">25</span><span></span><span></span></td> -->
 		    </tr>
 		  </tbody>
 </table>
@@ -261,6 +259,78 @@
 
 <p><br/></p>
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
+<script>
+	'use strict';
+	let date = new Date();
+	
+	let nowYoil = date.getDay();
+	let nowDay = date.getDate();
+	
+	let lastDate = new Date(date.getFullYear(),date.getMonth()+1,0);
+	let lastDay = lastDate.getDate();
+	
+	let firstSun = nowDay - nowYoil;
+	let block = '';
+	
+	let cnt = 0;
+	let sw = 'off';
+	for(let i=0; i<7; i++){
+		block += '<td>';
+		
+		if(sw == 'on' && cnt < 6) block += '<a href="javascript:fn_tennis_time_list(\'20230219\')">';
+		
+		block += '<span class="date ';
+		if(i == 0) block += 'txt_red';
+		block += '">'+(firstSun+i);
+		
+		if(sw == 'off' || cnt > 5) block += '</span><span></span><span></span>';
+		else if(sw == 'on' && cnt < 6) {
+			block += '</span><span class="label">가능 0건</span>';
+			block += '<span class="imposi-e">마감 225건</span></a>';
+			cnt++;
+		}
+		
+		console.log(sw);
+		console.log(cnt);
+		
+		if((firstSun+i) == nowDay) sw = 'on';
+		
+		block += '</td>';
+		if((firstSun+i) == lastDay) firstSun = -i;
+	}
+	$("#first_week").html(block);
+	block = '';
+	for(let i=0; i<7; i++){
+		block += '<td>';
+		if(sw == 'on' && cnt < 6) block += '<a href="javascript:fn_tennis_time_list(\'20230219\')">';
+		
+		
+		block += '<span class="date ';
+		if(i == 0) block += 'txt_red'
+		block += '">'+(firstSun+i+7);
+		
+		if(sw == 'off' || cnt > 5) block += '</span><span></span><span></span>';
+		else if(sw == 'on' && cnt < 6) {
+			block += '</span><span class="label">가능 0건</span>';
+			block += '<span class="imposi-e">마감 225건</span></a>';
+			cnt++;
+		}
+		
+		console.log(sw);
+		console.log(cnt);
+		
+		if((firstSun+i+7) == nowDay) sw = 'on';
+		
+		if((firstSun+i+7) == lastDay) firstSun = -i-7;
+	}
+	$("#second_week").html(block);
+	/* <a href="javascript:fn_tennis_time_list('20230219')">
+    <span class="date  txt_red">19</span>
+    <spanclass="label">가능 0건</span>
+    <span class="imposi-e">마감 225건</span>
+		</a> */
+	
+	
+</script>
 </body>
-
 </html>

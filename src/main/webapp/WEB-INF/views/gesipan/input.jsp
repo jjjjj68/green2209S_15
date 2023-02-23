@@ -75,7 +75,6 @@
 <jsp:include page="/WEB-INF/views/include/nav.jsp" />
 <p><br/></p>
 <div class="container">
-	<h2 style="text-align: center; font-size: 52px;font-weight: bolder;   margin-bottom: 2.5rem;">게시판 글쓰기</h2>
 </div>
 <div class="container text-center">
 	<form name="myform" method="post">

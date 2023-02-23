@@ -6,7 +6,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>title</title>
+	<title>게시판</title>
 	<jsp:include page="/WEB-INF/views/include/bs4.jsp"></jsp:include>
 </head>
 <script>

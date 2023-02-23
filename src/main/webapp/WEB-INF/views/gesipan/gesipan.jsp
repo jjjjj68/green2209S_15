@@ -81,7 +81,8 @@
 	<span style="float: right; color: #45464b;">그린 테니스장</span>
 	<span style="float: right; ">&nbsp;&nbsp;&nbsp;>&nbsp;&nbsp;&nbsp;</span>
 	<span style="float: right;  font-weight: bold;"><img src="${ctp}/images/home10.png" style=" width: 20px;height: 20px;"></span>
-	<h2 style="text-align: center; font-size: 52px;font-weight: bolder; padding-left:180px;  margin-bottom: 2.5rem;">게 시 판</h2>
+	<p><br/></p>
+	<h2 style="text-align: center; font-size: 52px;font-weight: bolder;   margin-bottom: 2.5rem;">게 시 판</h2>
 </div>
 <div class="container text-center">
 	<table>

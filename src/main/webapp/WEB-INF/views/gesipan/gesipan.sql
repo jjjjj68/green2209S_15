@@ -7,6 +7,8 @@ create table gesipan (
   primary key(idx)
 );
 
+drop table gesipan;
+
 show tables;
 
 select * from gesipan; 
