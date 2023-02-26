@@ -1,5 +1,7 @@
 package com.spring.green2209S_15;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,25 +16,26 @@ public class ReservationController {
 	@Autowired
 	ReservationService reservationService;
 	
+	
 	@RequestMapping(value = "/reservation", method=RequestMethod.GET)
 	public String reservationGet() {
 		reservationService.getReservation();
+		
 		return "reservation/reservation";
 	}
 	
-	/*
-	@RequestMapping(value = "/reservation", method=RequestMethod.GET)
-	public String dateGet() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");	// 형식
-		
-		Calendar cal = Calendar.getInstance();
-		String today = sdf.format(cal.getTime());	// 담긴 시간을 뽑아 형식에 맞게 포맷
-		
-		cal.add(cal.DATE, +6);	// 14일 후 날짜
-		String afterDate = sdf.format(cal.getTime());	// 담긴 시간을 뽑아 형식에 맞게 포맷
-		
-		return afterDate;
+	@RequestMapping(value = "/reservation", method = RequestMethod.POST)
+	public String reservationPost(HttpServletRequest request) {
+	    String restime = request.getParameter("restime");
+	    String courtNum = request.getParameter("courtNum");
+	    System.out.println("restime:" + restime);
+	    System.out.println("courtNum:" + courtNum);
+	    // DB에 저장하는 코드 작성
+	    
+	    
+	    
+	    
+	    return "";
 	}
-	*/
 }
 	

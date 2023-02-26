@@ -6,6 +6,9 @@ import lombok.Data;
 public class ReservationVO {
 	private int idx;
 	private String mid;
+	private int courtNumber; 
 	private String sDate;
-	private String part;
+	private int startTime; 
+	private int endTime; 
+	private int available;
 }

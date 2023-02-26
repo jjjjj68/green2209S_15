@@ -1,15 +1,21 @@
 show tables;
 
-create table reservation (
-	idx int not null auto_increment primary key, /* 인덱스번호 */
-	mid varchar(20) not null,		/* 사용자 id */
-	courtNumber int not null,		/* 코트번호 */
-	sDate datetime not null,		/* 일정 등록한 날짜 */
-	startTime int not null,									/* 코트시작시간 */
-	endTime int not null,									/* 코트끝나는시간 */
-	yesno varchar(2) not null		/* 코트 가능여부 */
+CREATE TABLE reservation (
+  idx INT NOT NULL AUTO_INCREMENT PRIMARY KEY, /* 인덱스번호 */
+  mid VARCHAR(20) NOT NULL,                   /* 사용자 id */
+  courtNumber INT NOT NULL,                   /* 코트번호 */
+  sDate DATE NOT NULL,                        /* 일정 등록한 날짜 */
+  startTime INT NOT NULL,                     /* 코트시작시간 */
+  endTime INT NOT NULL,                       /* 코트끝나는시간 */
+  available TINYINT(1) NOT NULL,               /* 코트 가능여부 */
+  CHECK (startTime < endTime)
 );
-
 desc reservation;
 
+select * from reservation
+
+
 /*drop table reservation;*/
+
+
+

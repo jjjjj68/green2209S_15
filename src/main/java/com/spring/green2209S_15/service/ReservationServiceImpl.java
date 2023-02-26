@@ -6,13 +6,19 @@ import java.util.Calendar;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.spring.green2209S_15.dao.ReservationDAO;
+
 @Service
 public class ReservationServiceImpl implements ReservationService {
 
+	@Autowired
+	ReservationDAO reservationDAO;
+	
 	@Override
 	public void getReservation() {
 		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
@@ -31,5 +37,6 @@ public class ReservationServiceImpl implements ReservationService {
 		request.setAttribute("afterDate", afterDate);
 		request.setAttribute("today", today);
 	}
+
 
 }
