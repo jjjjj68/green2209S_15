@@ -210,6 +210,8 @@ table td .date.txt_red {
   cursor: pointer;
 }
 </style>
+<script>
+</script>
 <body>
 <jsp:include page="/WEB-INF/views/include/header.jsp" />
 <jsp:include page="/WEB-INF/views/include/slide.jsp" />
@@ -223,7 +225,7 @@ table td .date.txt_red {
 </div>
 
 <form class="myform">
-	<div class="main" style="background: #F5F5F5; width: 1100px; height: 1000px; margin: auto; text-align: right;">
+	<div class="main" style="background: #F5F5F5; width: 1100px; height: 500px; margin: auto; text-align: right;">
   <div class="today_after" style="font-size: 20px; color: #222;">
     ${today} ~ ${afterDate}
   </div>
@@ -269,177 +271,242 @@ table td .date.txt_red {
   <div class="modal_content">
     <span class="btn_close_modal">&times;</span>
     <h2>일일 예약하기</h2>
-    <form id="reserve_form" method="post" action="reservation">
-      <div class="form-group">
-			  <label for="reserve_time">예약 시간:</label>
-			  <div>
-			    <select name="restime">
-			      <c:forEach var="hour" begin="9" end="21">
-			        <option value="${hour}">${hour}:00 - ${hour+1}:00</option>
-			      </c:forEach>
-			    </select>
-			  </div>
+    
+     <div class="form-group">
+		  <label for="reserve_time">예약 시간:</label>
+		  <div>
+		    <select id="restime1" class="restimeClass"></select>
+		    <select id="restime2" class="restimeClass"></select>
+		    <select id="restime3" class="restimeClass"></select>
+		    <select id="restime4" class="restimeClass"></select>
+		    <select id="restime5" class="restimeClass"></select>
+		  </div>
+		</div>
+     <div class="form-group">
+       <label for="reserve_court">코트:</label>
+       <div>
+				<select name="courtNum" id="courtNum" onchange="viewRestime(this)">
+					<c:forEach var="Num" begin="1" end="5">
+						<option value="${Num}">${Num}번코트</option>
+					</c:forEach>
+				</select>
 			</div>
-      <div class="form-group">
-        <label for="reserve_court">코트:</label>
-        <div>
-					<select name="courtNum">
-						<c:forEach var="Num" begin="1" end="5">
-							<option value="${Num}">${Num}번코트</option>
-						</c:forEach>
-					</select>
-				</div>
-      </div>
-      <button type="submit" class="btn btn-primary">예약하기</button>
-    </form>
+     </div>
+     <button id="reserveBtn" type="submit" class="btn btn-primary">예약하기</button>
+      
   </div>
 </div>
 
-
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
-<p><br/></p>
 <p><br/></p>
 
 <jsp:include page="/WEB-INF/views/include/footer.jsp" />
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script>
-'use strict';
-let date = new Date();
-let nowYoil = date.getDay();
-let nowDay = date.getDate();
-let lastDate = new Date(date.getFullYear(),date.getMonth()+1,0);
-let lastDay = lastDate.getDate();
-let firstSun = nowDay - nowYoil;
-let block = '';
-let cnt = 0;
-let sw = 'off';
-
-for(let i = 0; i < 7; i++) {
-  block += '<td>';
-  
-  if(sw == 'on' && cnt < 6) block += '<a href="javascript:fn_tennis_time_list(\'20230219\')">';
-  
-  block += '<span class="date ';
-	if(i == 0) block += 'txt_red';
-	block += '">'+(firstSun+i);
+	'use strict';
+	let date = new Date();
+	let nowYoil = date.getDay();
+	let nowDay = date.getDate();
+	let lastDate = new Date(date.getFullYear(),date.getMonth()+1,0);
+	let lastDay = lastDate.getDate();
+	let firstSun = nowDay - nowYoil;
+	let block = '';
+	let cnt = 0;
+	let sw = 'off';
 	
-	if(sw == 'off' || cnt > 5) block += '</span><span></span><span></span>';
-	else if(sw == 'on' && cnt < 6) {
-    block += '</span><button type="button" class="btn_reserve" data-date="20230219" data-court="1">예약하기</button>';
-		cnt++;
-	}
-
-	if((firstSun+i) == nowDay) sw = 'on';
+	for(let i = 0; i < 7; i++) {
+	  block += '<td>';
+	  
+	  if(sw == 'on' && cnt < 6) block += '<a href="javascript:fn_tennis_time_list(\'20230219\')">';
+	  
+	  block += '<span class="date ';
+		if(i == 0) block += 'txt_red';
+		block += '">'+(firstSun+i);
+		
+		if(sw == 'off' || cnt > 5) block += '</span><span></span><span></span>';
+		else if(sw == 'on' && cnt < 5) {
+	    block += '</span><button type="button" class="btn_reserve" data-date="20230219" data-court="1" onclick="loadDateData('+(cnt+1)+')" >예약하기</button>';
+			cnt++;
+		}
 	
-	block += '</td>';
-	if((firstSun+i) == lastDay) firstSun = -i;
-}
-
-
-
-$("#first_week").html(block);
-block = '';
-
-for(let i=0; i<7; i++){
-	block += '<td>';
-	if(sw == 'on' && cnt < 6) {
-		block += '<a href="javascript:fn_tennis_time_list(\'20230219\')">';
+		if((firstSun+i) == nowDay) sw = 'on';
+		
+		block += '</td>';
+		if((firstSun+i) == lastDay) firstSun = -i;
 	}
 	
-  block += '<span class="date ';
-  if(i == 0) {
-    block += 'txt_red';
-  }
-  block += '">'+(firstSun+i+7);
-
-  if((firstSun+i+7) == nowDay) {
-    sw = 'on';
-  }
-  if((firstSun+i+7) == lastDay) {
-    firstSun = -i-7;
-  }
-  block += '</td>';
-}
-$("#second_week").html(block);
-
-
-$('.btn_reserve').on('click', function() {
-	  const date = $(this).data('date');
-	  const court = $(this).data('court');
-	  $('.modal-date').text(date);
-	  $('.modal-court').text(court);
-	  $('.modal').addClass('active');
+	
+	
+	$("#first_week").html(block);
+	block = '';
+	
+	for(let i=0; i<7; i++){
+		block += '<td>';
+		if(sw == 'on' && cnt < 6) {
+			block += '<a href="javascript:fn_tennis_time_list(\'20230219\')">';
+		}
+		
+	  block += '<span class="date ';
+	  if(i == 0) {
+	    block += 'txt_red';
+	  }
+	  block += '">'+(firstSun+i+7);
+	  
+	  if(sw == 'off' || cnt > 5) block += '</span><span></span><span></span>';
+		else if(sw == 'on' && cnt < 5) {
+	    block += '</span><button type="button" class="btn_reserve" data-date="20230219" data-court="1" onclick="loadDateData('+(cnt+1)+')" >예약하기</button>';
+			cnt++;
+		}
+	  
+	  if((firstSun+i+7) == nowDay) {
+	    sw = 'on';
+	  }
+	  if((firstSun+i+7) == lastDay) {
+	    firstSun = -i-7;
+	  }
+	  block += '</td>';
+	}
+	$("#second_week").html(block);
+	
+	$('.btn_reserve').on('click', function() {
+		  const date = $(this).data('date');
+		  const court = $(this).data('court');
+		  $('.modal-date').text(date);
+		  $('.modal-court').text(court);
+		  $('.modal').addClass('active');
+		});
+	
+	$(document).on("click", ".btn_reserve", function() {
+		let date = $(this).data("date");
+		let court = $(this).data("court");
+		let modal = $("#reserve_modal");
+		modal.find(".modal_date").text(date);
+		modal.find(".modal_court").text(court);
+		modal.show();
 	});
-
-$(document).on("click", ".btn_reserve", function() {
-	let date = $(this).data("date");
-	let court = $(this).data("court");
-	let modal = $("#reserve_modal");
-	modal.find(".modal_date").text(date);
-	modal.find(".modal_court").text(court);
-	modal.show();
-});
-
-$(document).on("click", ".btn_reserve", function() {
-	  console.log("예약하기 버튼 클릭됨");
-	  let date = $(this).data("date");
-	  let court = $(this).data("court");
-	  let modal = $("#reserve_modal");
-	  modal.find(".modal_date").text(date);
-	  modal.find(".modal_court").text(court);
-	  modal.show();
+	
+	$(document).on("click", ".btn_reserve", function() {
+		  let date = $(this).data("date");
+		  let court = $(this).data("court");
+		  let modal = $("#reserve_modal");
+		  modal.find(".modal_date").text(date);
+		  modal.find(".modal_court").text(court);
+		  modal.show();
+		});
+	
+	//모달창 닫기
+	$(document).on("click", ".btn_close_modal", function() {
+	  $("#reserve_modal").hide();
 	});
-
-//모달창 닫기
-$(document).on("click", ".btn_close_modal", function() {
-  console.log("모달창 닫기 버튼 클릭됨");
-  $("#reserve_modal").hide();
-});
-
-$(document).on("click", ".btn_reserve", function() {
-	  let date = $(this).data("date");
-	  let time = $(this).data("time");
-	  let court = $(this).data("court");
-	  let modal = $("#reserve_modal");
-	  modal.find(".modal_date").text(date);
-	  modal.find(".modal_time").val(time);
-	  modal.find(".modal_court").val(court);
-	  modal.show();
+	
+	$(document).on("click", ".btn_reserve", function() {
+		  let date = $(this).data("date");
+		  let time = $(this).data("time");
+		  let court = $(this).data("court");
+		  let modal = $("#reserve_modal");
+		  modal.find(".modal_date").text(date);
+		  modal.find(".modal_time").val(time);
+		  modal.find(".modal_court").val(court);
+		  modal.show();
+		});
+	
+	$(document).on("click", ".btn_reserve", function() {
+	    let date = $(this).data("date");
+	    let court = $(this).data("court");
+	    let modal = $("#reserve_modal");
+	    modal.find(".modal_date").text(date);
+	    modal.find(".modal_court").text(court);
+	    
+	    modal.show();
 	});
-
-$(document).on("click", ".btn_reserve", function() {
-    let date = $(this).data("date");
-    let court = $(this).data("court");
-    let modal = $("#reserve_modal");
-    modal.find(".modal_date").text(date);
-    modal.find(".modal_court").text(court);
-    
-    // API를 호출하여 예약 가능한 시간 정보를 받아옵니다.
-    $.get("/reservations?date=" + date + "&court=" + court, function(availableTimes) {
-        let timeHtml = "";
-        for (let i = 0; i < availableTimes.length; i++) {
-            timeHtml += "<div class='available_time'>" + availableTimes[i] + "</div>";
-        }
-        modal.find(".modal_body").html(timeHtml);
-    });
-    
-    modal.show();
-});
+	
+	$(".restimeClass").on("change", function(){
+		if($(this).val() == '') document.getElementById("reserveBtn").disabled = true;
+		else document.getElementById("reserveBtn").disabled = false;
+	});
+	
+	$("#courtNum").on("change", function(){
+		if($("#restime"+$(this).val()).val() == '') document.getElementById("reserveBtn").disabled = true;
+		else document.getElementById("reserveBtn").disabled = false;
+	});
+	
+	function loadDateData(day) {
+		$.ajax({
+			type: "post",
+			url: "${ctp}/reservation/getThisDate",
+			data: {day:day},
+			success: function(vos) {
+				for(let i=1; i<=5; i++){
+					$("#restime"+i).html('');
+					let block = '';
+					block += vos[i-1].time09 == null ? '<option value="09">09:00 - 10:00</option>' : '<option value="">09:00 - 10:00 [예약완료]</option>';  
+					block += vos[i-1].time10 == null ? '<option value="10">10:00 - 11:00</option>' : '<option value="">10:00 - 11:00 [예약완료]</option>';  
+					block += vos[i-1].time11 == null ? '<option value="11">11:00 - 12:00</option>' : '<option value="">11:00 - 12:00 [예약완료]</option>';  
+					block += vos[i-1].time12 == null ? '<option value="12">12:00 - 13:00</option>' : '<option value="">12:00 - 13:00 [예약완료]</option>';  
+					block += vos[i-1].time13 == null ? '<option value="13">13:00 - 14:00</option>' : '<option value="">13:00 - 14:00 [예약완료]</option>';  
+					block += vos[i-1].time14 == null ? '<option value="14">14:00 - 15:00</option>' : '<option value="">14:00 - 15:00 [예약완료]</option>';  
+					block += vos[i-1].time15 == null ? '<option value="15">15:00 - 16:00</option>' : '<option value="">15:00 - 16:00 [예약완료]</option>';  
+					block += vos[i-1].time16 == null ? '<option value="16">16:00 - 17:00</option>' : '<option value="">16:00 - 17:00 [예약완료]</option>';  
+					block += vos[i-1].time17 == null ? '<option value="17">17:00 - 18:00</option>' : '<option value="">17:00 - 18:00 [예약완료]</option>';  
+					block += vos[i-1].time18 == null ? '<option value="18">18:00 - 19:00</option>' : '<option value="">18:00 - 19:00 [예약완료]</option>';  
+					block += vos[i-1].time19 == null ? '<option value="19">19:00 - 20:00</option>' : '<option value="">19:00 - 20:00 [예약완료]</option>';  
+					block += vos[i-1].time20 == null ? '<option value="20">20:00 - 21:00</option>' : '<option value="">20:00 - 21:00 [예약완료]</option>';  
+					block += vos[i-1].time21 == null ? '<option value="21">21:00 - 22:00</option>' : '<option value="">21:00 - 22:00 [예약완료]</option>';  
+					
+					$("#restime"+i).append(block);
+				}
+				$("#courtNum").val(1).prop("selected",true);
+				
+				$("#restime1").css("display","inline-block");
+				for(let i=2; i<=5; i++) $("#restime"+i).css("display","none");
+				
+				$("#reserveBtn").attr("onclick","reservation("+day+")");
+				
+				if($("#restime1").find("option:eq(0)").val() == '') document.getElementById("reserveBtn").disabled = true;
+				else document.getElementById("reserveBtn").disabled = false;
+			},
+			error: function() {
+				alert("전송 오류");
+			}
+		});
+	}
+	
+	function viewRestime(me) {
+		let idx = $(me).val();
+		for(let i=1; i<=5; i++) {
+			if(i != idx) $("#restime"+i).css("display","none");
+			else $("#restime"+i).css("display","inline-block");
+		}
+	}
+	
+	function reservation(day) {
+		let courtNum = $("#courtNum").val();
+		let time = $("#restime"+courtNum).val();
+		
+		if(time == '') {
+			alert("해당 시간은 예약이 완료되었습니다.");
+			return;
+		}
+		
+		$.ajax({
+			type: "post",
+			url: "reservation",
+			data: {courtNumber:courtNum,startTime:time,afterDay:day},
+			success: function(res) {
+				if(res == 0) alert("예약 실패");
+				else {
+					alert("예약이 완료되었습니다.");
+					document.location.reload(true);
+				}
+			},
+			error: function() {
+				alert("전송 에러");
+			}
+		});
+		
+		
+	}
+	
 </script>
 </body>
 </html>

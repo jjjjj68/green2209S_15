@@ -58,6 +58,14 @@ public class MessageController {
     	  model.addAttribute("msg", "게시글이 삭제되었습니다.");
     	  model.addAttribute("url", "gesipan/gesipan");
       }
+      else if(msgFlag.equals("reservationOk")) {
+    	  model.addAttribute("msg", "예약이 완료되었습니다.");
+    	  model.addAttribute("url", "reservation/pay");
+      }
+      else if(msgFlag.equals("reservationNo")) {
+    	  model.addAttribute("msg", "다시한번 확인해주시기 바랍니다.");
+    	  model.addAttribute("url", "reservation/reservation");
+      }
       
 		return "include/message";
 	}

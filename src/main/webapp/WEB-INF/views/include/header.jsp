@@ -93,9 +93,16 @@
             <div class="gnb">
              <ul>
                 <li><a href="http://localhost:9090/green2209S_15" class="home" style="color: #0089ff;" target="_blank"><img src="${ctp}/images/home1.png" ><span class="homeSub">메인으로</span></a></li>
-                <li><a href="" ><img src="${ctp}/images/shopping.png" ><span class="sub">결제바구니</span></a></li>
+                <c:if test="${!empty sLevel}">
+                	<li><a href="${ctp}/shopping/shopping" ><img src="${ctp}/images/shopping.png" ><span class="sub">결제바구니</span></a></li>
+                </c:if>
                 <li><a href="" ><img src="${ctp}/images/history.png" ><span class="sub">신청내역</span></a></li>
-                <li><a href="${ctp}/member/join" ><img src="${ctp}/images/join.png" ><span class="sub">회원가입</span></a></li>
+               	<c:if test="${empty sLevel}">
+                	<li><a href="${ctp}/member/join" ><img src="${ctp}/images/join.png" ><span class="sub">회원가입</span></a></li>
+                </c:if>
+                <c:if test="${!empty sLevel}">
+                	<li><a href="${ctp}/member/mypage" ><img src="${ctp}/images/join.png" ><span class="sub">내 정 보</span></a></li>
+                </c:if>
                 <c:if test="${empty sLevel}">
                 	<li><a href="${ctp}/member/login"><img src="${ctp}/images/login1.png" ><span class="sub">로 그 인</span></a></li>
                 </c:if>

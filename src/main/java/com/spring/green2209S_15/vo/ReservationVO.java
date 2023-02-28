@@ -8,7 +8,6 @@ public class ReservationVO {
 	private String mid;
 	private int courtNumber; 
 	private String sDate;
-	private int startTime; 
-	private int endTime; 
-	private int available;
+	private String startTime; 
+	private String endTime; 
 }

@@ -74,7 +74,7 @@
 						<a href="" target="_blank" title="새창">이용약관</a>
 					</li>
 					<li>
-						<a href="" target="_blank" title="새창">찾아오시는길</a>
+						<a href="${ctp}/come/come" target="_blank" title="찾아오시는길">찾아오시는길</a>
 					</li>
 				</ul>
 			</div>

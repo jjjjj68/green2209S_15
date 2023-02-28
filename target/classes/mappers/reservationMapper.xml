@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.green2209S_15.dao.ReservationDAO">
+
+	<select id="getThisDate" resultType="com.spring.green2209S_15.vo.ReservationVO">
+		select * from reservation where sDate = #{date} order by startTime;
+	</select>
 	
-	
-	
-	<insert id="setReservation">
-		INSERT INTO reservation VALUES (#{mid}, #{courtNumber}, #{sDate}, #{startTime}, #{endTime}, #{available});
+	<insert id="setreservationPost">
+		insert into reservation values (default,#{vo.mid},#{vo.courtNumber},#{vo.sDate},#{vo.startTime},#{vo.endTime});
 	</insert>
-	
 </mapper>

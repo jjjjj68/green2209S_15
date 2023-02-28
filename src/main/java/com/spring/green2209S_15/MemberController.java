@@ -129,4 +129,18 @@ public class MemberController {
 		session.invalidate();
 		return "redirect:/msg/logout?mid="+mid;
 	}
+
+	@RequestMapping(value="/mypage", method=RequestMethod.GET)
+	public String mypageGet(MemberVO vo) {
+		
+		
+		return "member/mypage";
+	}
+	@RequestMapping(value="/mypage", method=RequestMethod.POST)
+	public String mypagePost(MemberVO vo, Model model) {
+		
+		model.addAttribute("vo",vo);
+		
+		return "member/mypage";
+	}
 }

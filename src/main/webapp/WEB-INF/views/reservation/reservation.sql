@@ -5,17 +5,17 @@ CREATE TABLE reservation (
   mid VARCHAR(20) NOT NULL,                   /* 사용자 id */
   courtNumber INT NOT NULL,                   /* 코트번호 */
   sDate DATE NOT NULL,                        /* 일정 등록한 날짜 */
-  startTime INT NOT NULL,                     /* 코트시작시간 */
-  endTime INT NOT NULL,                       /* 코트끝나는시간 */
-  available TINYINT(1) NOT NULL,               /* 코트 가능여부 */
-  CHECK (startTime < endTime)
+  startTime VARCHAR(10) NOT NULL,                     /* 코트시작시간 */
+  endTime VARCHAR(10) NOT NULL                       /* 코트끝나는시간 */
 );
 desc reservation;
 
 select * from reservation
-
+select * from reservation where sDate = '2023-02-29' order by startTime;
+	
+insert into reservation values(default,'admin','1','2023-03-01','12:00','13:00');
 
 /*drop table reservation;*/
 
 
-
+SELECT COUNT(*) FROM reservation WHERE date = '2022-02-29' AND time = '10:00';
